@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-UmApp<um-webapp-m1-l4>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.baeldung.um.spring.UmApp",
+            "projectName": "um-webapp-m1-l4",
+            "args": ""
+        }
+    ]
+}
