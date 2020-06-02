@@ -31,7 +31,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
-	
+
 		<!-- web -->
 
 		<dependency>
@@ -39,6 +39,13 @@
 			<artifactId>tomcat-servlet-api</artifactId>
 			<version>${tomcat.version}</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<!-- validation -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.1.5.Final</version>
 		</dependency>
 
 		<!-- marshalling -->
@@ -87,7 +94,7 @@
 		</dependency>
 
 		<!-- logging -->
-		
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -101,7 +108,8 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 		</dependency>
-		<dependency> <!-- needed to bridge to slf4j for projects that use the log4j APIs directly -->
+		<dependency>
+			<!-- needed to bridge to slf4j for projects that use the log4j APIs directly -->
 			<groupId>org.slf4j</groupId>
 			<artifactId>log4j-over-slf4j</artifactId>
 		</dependency>

@@ -3,6 +3,7 @@ package com.baeldung.um.web.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,24 +35,29 @@ public class PrivilegeController extends AbstractController<Privilege> implement
     // find - all/paginated
 
     @Override
-    @RequestMapping(params = { QueryConstants.PAGE, QueryConstants.SIZE, QueryConstants.SORT_BY }, method = RequestMethod.GET)
+    @RequestMapping(params = { QueryConstants.PAGE, QueryConstants.SIZE,
+            QueryConstants.SORT_BY }, method = RequestMethod.GET)
     @ResponseBody
-    public List<Privilege> findAllPaginatedAndSorted(@RequestParam(value = QueryConstants.PAGE) final int page, @RequestParam(value = QueryConstants.SIZE) final int size, @RequestParam(value = QueryConstants.SORT_BY) final String sortBy,
-        @RequestParam(value = QueryConstants.SORT_ORDER) final String sortOrder) {
+    public List<Privilege> findAllPaginatedAndSorted(@RequestParam(value = QueryConstants.PAGE) final int page,
+            @RequestParam(value = QueryConstants.SIZE) final int size,
+            @RequestParam(value = QueryConstants.SORT_BY) final String sortBy,
+            @RequestParam(value = QueryConstants.SORT_ORDER) final String sortOrder) {
         return findPaginatedAndSortedInternal(page, size, sortBy, sortOrder);
     }
 
     @Override
     @RequestMapping(params = { QueryConstants.PAGE, QueryConstants.SIZE }, method = RequestMethod.GET)
     @ResponseBody
-    public List<Privilege> findAllPaginated(@RequestParam(value = QueryConstants.PAGE) final int page, @RequestParam(value = QueryConstants.SIZE) final int size) {
+    public List<Privilege> findAllPaginated(@RequestParam(value = QueryConstants.PAGE) final int page,
+            @RequestParam(value = QueryConstants.SIZE) final int size) {
         return findPaginatedInternal(page, size);
     }
 
     @Override
     @RequestMapping(params = { QueryConstants.SORT_BY }, method = RequestMethod.GET)
     @ResponseBody
-    public List<Privilege> findAllSorted(@RequestParam(value = QueryConstants.SORT_BY) final String sortBy, @RequestParam(value = QueryConstants.SORT_ORDER) final String sortOrder) {
+    public List<Privilege> findAllSorted(@RequestParam(value = QueryConstants.SORT_BY) final String sortBy,
+            @RequestParam(value = QueryConstants.SORT_ORDER) final String sortOrder) {
         return findAllSortedInternal(sortBy, sortOrder);
     }
 
@@ -74,7 +80,7 @@ public class PrivilegeController extends AbstractController<Privilege> implement
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody final Privilege resource) {
+    public void create(@RequestBody @Valid Privilege resource) {
         createInternal(resource);
     }
 
@@ -82,7 +88,7 @@ public class PrivilegeController extends AbstractController<Privilege> implement
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable("id") final Long id, @RequestBody final Privilege resource) {
+    public void update(@PathVariable("id") final Long id, @RequestBody @Valid Privilege resource) {
         updateInternal(id, resource);
     }
 

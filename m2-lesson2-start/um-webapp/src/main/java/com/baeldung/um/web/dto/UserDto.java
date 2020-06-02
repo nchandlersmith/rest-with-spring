@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import com.baeldung.common.interfaces.INameableDto;
 import com.baeldung.common.persistence.model.INameableEntity;
@@ -28,11 +30,16 @@ public class UserDto implements INameableEntity, INameableDto {
     @Email
     private String email;
 
+    @Min(0)
+    @Max(99)
+    private int age;
+
     private String password;
 
     /* Marshalling */
     // - note: this gets rid of the collection entirely
-    // - note: this requires: xstream.addDefaultImplementation( java.util.HashSet.class, PersistentSet.class );
+    // - note: this requires: xstream.addDefaultImplementation(
+    // java.util.HashSet.class, PersistentSet.class );
     // @XStreamConverter( value = HibernateCollectionConverter.class )
     private Set<Role> roles;
 
@@ -143,9 +150,7 @@ public class UserDto implements INameableEntity, INameableDto {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("id", id)
-            .append("name", name)
-            .toString();
+        return new ToStringBuilder(this).append("id", id).append("name", name).toString();
     }
 
 }
