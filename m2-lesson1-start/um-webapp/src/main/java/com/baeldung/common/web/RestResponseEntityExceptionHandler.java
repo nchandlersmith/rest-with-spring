@@ -1,6 +1,7 @@
 package com.baeldung.common.web;
 
 import com.baeldung.common.web.exception.ApiError;
+import com.baeldung.common.web.exception.MyBadRequestException;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
@@ -43,9 +44,8 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                 request);
     }
 
-    @ExceptionHandler(value = DataIntegrityViolationException.class)
-    public final ResponseEntity<Object> handleBadRequest(final DataIntegrityViolationException ex,
-            final WebRequest request) {
+    @ExceptionHandler(value = { DataIntegrityViolationException.class, MyBadRequestException.class })
+    public final ResponseEntity<Object> handleBadRequest(final RuntimeException ex, final WebRequest request) {
         return handleExceptionInternal(ex, message(HttpStatus.BAD_REQUEST, ex), new HttpHeaders(),
                 HttpStatus.BAD_REQUEST, request);
     }
