@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-UmApp<um-webapp-m3-l2-start>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.baeldung.um.run.UmApp",
+            "projectName": "um-webapp-m3-l2-start",
+            "args": ""
+        }
+    ]
+}
